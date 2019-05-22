@@ -1,0 +1,69 @@
+﻿<Window x:Class="LibraryWPF.UserControlPanel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryWPF"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Background="#FF793183"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        Title="User Control Panel" Height="665.571" Width="682.571" Closing="Window_Closing" ResizeMode="NoResize">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Margin="0,0,2,0">
+        <Border BorderBrush="White" BorderThickness="1" HorizontalAlignment="Left" Height="513" Margin="10,10,0,0" VerticalAlignment="Top" Width="655">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="1"
+                          Color="White"
+                          Opacity="5"
+                          BlurRadius="10"/>
+            </Border.Effect>
+        </Border>
+
+        <Rectangle Fill="White" HorizontalAlignment="Left" Height="616" Margin="10,10,0,0" Stroke="White" VerticalAlignment="Top" Width="655"/>
+
+        <DataGrid x:Name="UsersGrid" HorizontalAlignment="Left" Height="210" Margin="28,124,0,0" VerticalAlignment="Top" Width="617"  ItemsSource="{Binding}" AutoGenerateColumns="False" SelectionChanged="UsersGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding UserId}"/>
+                <DataGridTextColumn Header="Firstname" Binding="{Binding Firstname}"/>
+                <DataGridTextColumn Header="Lastname" Binding="{Binding Lastname}"/>
+                <DataGridTextColumn Header="Phone number" Binding="{Binding Telephone}"/>
+                <DataGridTextColumn Header="Address" Binding="{Binding Address}"/>
+                <DataGridTextColumn Header="E-mail" Binding="{Binding E-mail}"/>
+                <DataGridTextColumn Header="Fine" Binding="{Binding ToPay}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Users" HorizontalAlignment="Left" Margin="28,93,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Button x:Name="EditBtn" Content="Edit" HorizontalAlignment="Left" Margin="570,339,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.455,-0.656" Click="EditBtn_Click" Height="34"/>
+        <DataGrid x:Name="RentingHistoryGrid" HorizontalAlignment="Left" Height="176" Margin="28,396,0,0" VerticalAlignment="Top" Width="617" ItemsSource="{Binding}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding BookId}"/>
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Author" Binding="{Binding Author}"/>
+                <DataGridTextColumn Header="Shelf" Binding="{Binding Shelf}"/>
+                <DataGridTextColumn Header="Genre" Binding="{Binding Genre}"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
+                <DataGridTextColumn Header="Notes" Binding="{Binding Notes}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Rented Books" HorizontalAlignment="Left" Margin="28,362,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Height="34" Margin="29,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <ComboBox x:Name="CriteriumCombobox" HorizontalAlignment="Left" Margin="237,57,0,0" VerticalAlignment="Top" Width="133" RenderTransformOrigin="0.454,0.019" Height="34" Background="White"/>
+        <Button x:Name="FindBtn" Content="Find" HorizontalAlignment="Left" Margin="390,57,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.455,-0.656" Click="FindBtn_Click" Height="34"/>
+        <Label Content="Find" HorizontalAlignment="Left" Margin="29,31,0,0" VerticalAlignment="Top" Height="34" FontWeight="Bold"/>
+        <Label Content="Category" HorizontalAlignment="Left" Margin="237,31,0,0" VerticalAlignment="Top" Height="34" FontWeight="Bold"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="570,577,0,0" VerticalAlignment="Top" Width="75" Height="34" Click="Button_Click"/>
+
+    </Grid>
+</Window>

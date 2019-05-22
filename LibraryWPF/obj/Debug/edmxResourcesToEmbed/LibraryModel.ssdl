@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LibraryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="BookId" />
+    </Key>
+    <Property Name="BookId" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="400" Nullable="false" />
+    <Property Name="Author" Type="nvarchar" MaxLength="400" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="Shelf" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Genre" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Rent">
+    <Key>
+      <PropertyRef Name="RentId" />
+    </Key>
+    <Property Name="RentId" Type="int" Nullable="false" />
+    <Property Name="Book_Id" Type="int" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="Return_date" Type="datetime" Nullable="false" />
+    <Property Name="Rent_date" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Firstname" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Lastname" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Telephone" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="E-mail" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="ToPay" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\USER\DESKTOP\LIBRARYWPF\LIBRARYWPF\LIBRARY.MDF.dbo.RentedBooksInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="RentedBooksInfo">
+    <Key>
+      <PropertyRef Name="BookId" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="Author" />
+      <PropertyRef Name="Description" />
+      <PropertyRef Name="Shelf" />
+      <PropertyRef Name="Genre" />
+      <PropertyRef Name="Quantity" />
+      <PropertyRef Name="Price" />
+      <PropertyRef Name="RentId" />
+      <PropertyRef Name="Book_Id" />
+      <PropertyRef Name="User_Id" />
+      <PropertyRef Name="Return_date" />
+      <PropertyRef Name="Rent_date" />
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="Firstname" />
+      <PropertyRef Name="Lastname" />
+      <PropertyRef Name="Telephone" />
+      <PropertyRef Name="Address" />
+      <PropertyRef Name="E-mail" />
+      <PropertyRef Name="Type" />
+    </Key>
+    <Property Name="BookId" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="400" Nullable="false" />
+    <Property Name="Author" Type="nvarchar" MaxLength="400" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="Shelf" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Genre" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="100" />
+    <Property Name="RentId" Type="int" Nullable="false" />
+    <Property Name="Book_Id" Type="int" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="Return_date" Type="datetime" Nullable="false" />
+    <Property Name="Rent_date" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="20" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Firstname" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Lastname" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Telephone" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="E-mail" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="ToPay" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <Association Name="FK_Book_Id">
+    <End Role="Book" Type="Self.Book" Multiplicity="1" />
+    <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="BookId" />
+      </Principal>
+      <Dependent Role="Rent">
+        <PropertyRef Name="Book_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Id">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Rent" Type="Self.Rent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Rent">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LibraryModelStoreContainer">
+    <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rent" EntityType="Self.Rent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RentedBooksInfo" EntityType="Self.RentedBooksInfo" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [RentedBooksInfo].[BookId] AS [BookId], 
+    [RentedBooksInfo].[Title] AS [Title], 
+    [RentedBooksInfo].[Author] AS [Author], 
+    [RentedBooksInfo].[Description] AS [Description], 
+    [RentedBooksInfo].[Shelf] AS [Shelf], 
+    [RentedBooksInfo].[Genre] AS [Genre], 
+    [RentedBooksInfo].[Quantity] AS [Quantity], 
+    [RentedBooksInfo].[Price] AS [Price], 
+    [RentedBooksInfo].[Notes] AS [Notes], 
+    [RentedBooksInfo].[RentId] AS [RentId], 
+    [RentedBooksInfo].[Book_Id] AS [Book_Id], 
+    [RentedBooksInfo].[User_Id] AS [User_Id], 
+    [RentedBooksInfo].[Return_date] AS [Return_date], 
+    [RentedBooksInfo].[Rent_date] AS [Rent_date], 
+    [RentedBooksInfo].[Status] AS [Status], 
+    [RentedBooksInfo].[UserId] AS [UserId], 
+    [RentedBooksInfo].[Password] AS [Password], 
+    [RentedBooksInfo].[Firstname] AS [Firstname], 
+    [RentedBooksInfo].[Lastname] AS [Lastname], 
+    [RentedBooksInfo].[Telephone] AS [Telephone], 
+    [RentedBooksInfo].[Address] AS [Address], 
+    [RentedBooksInfo].[E-mail] AS [E-mail], 
+    [RentedBooksInfo].[Type] AS [Type], 
+    [RentedBooksInfo].[ToPay] AS [ToPay]
+    FROM [dbo].[RentedBooksInfo] AS [RentedBooksInfo]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Book_Id" Association="Self.FK_Book_Id">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="Rent" EntitySet="Rent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Id" Association="Self.FK_User_Id">
+      <End Role="User" EntitySet="User" />
+      <End Role="Rent" EntitySet="Rent" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,78 @@
+﻿<Window x:Class="LibraryWPF.UserBooks"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryWPF"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Background="#FF793183"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        Title="Books information" Height="763.504" Width="1060.786" ResizeMode="NoResize">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Window.Resources>
+
+    <Grid Margin="0,0,-8,0">
+        <Border BorderBrush="White" BorderThickness="10" HorizontalAlignment="Left" Height="699" Margin="10,10,0,0" VerticalAlignment="Top" Width="1028">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="1"
+                          Color="White"
+                          Opacity="5"
+                          BlurRadius="10"/>
+            </Border.Effect>
+        </Border>
+
+        <Rectangle Fill="White" HorizontalAlignment="Left" Height="699" Margin="10,10,0,0" VerticalAlignment="Top" Width="1028"/>
+
+        <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Height="32" Margin="40,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <ComboBox x:Name="CriteriumCombobox" HorizontalAlignment="Left" Margin="249,50,0,0" VerticalAlignment="Top" Width="161" RenderTransformOrigin="0.454,0.019" Height="34" Background="White"/>
+        <Label Content="Find" HorizontalAlignment="Left" Margin="40,25,0,0" VerticalAlignment="Top" Height="27" RenderTransformOrigin="0.595,0.63" FontWeight="Bold">
+        </Label>
+        <DataGrid x:Name="BooksDataGrid" HorizontalAlignment="Left" Height="286" Margin="40,95,0,0" VerticalAlignment="Top" Width="620" ItemsSource="{Binding}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding BookId}"/>
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Author" Binding="{Binding Author}"/>
+                <DataGridTextColumn Header="Shelf" Binding="{Binding Shelf}"/>
+                <DataGridTextColumn Header="Genre" Binding="{Binding Genre}"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
+                <DataGridTextColumn Header="Notes" Binding="{Binding Notes}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button x:Name="RentBtn" Content="Rent" HorizontalAlignment="Left" Margin="570,386,0,0" VerticalAlignment="Top" Width="90" RenderTransformOrigin="0.455,-0.656" Click="RentBtn_Click" Height="34"/>
+        <Button x:Name="ProfileBtn" Content="Profile" HorizontalAlignment="Left" Margin="793,20,0,0" VerticalAlignment="Top" Width="90" RenderTransformOrigin="0.488,1.5" Click="ProfileBtn_Click" Height="34"/>
+        <Button x:Name="LogOutBtn" Content="Log out" HorizontalAlignment="Left" Margin="902,20,0,0" VerticalAlignment="Top" Width="90" Click="LogOutBtn_Click" RenderTransformOrigin="0.32,0.656" Height="34"/>
+        <DataGrid x:Name="RentedBooksGrid" HorizontalAlignment="Left" Height="197" Margin="40,445,0,0" VerticalAlignment="Top" Width="620" ItemsSource="{Binding}" AutoGenerateColumns="False" SelectionChanged="RentedBooksGrid_SelectionChanged" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding BookId}"/>
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Shelf" Binding="{Binding Shelf}"/>
+                <DataGridTextColumn Header="Genre" Binding="{Binding Genre}"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
+                <DataGridTextColumn Header="Notes" Binding="{Binding Notes}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Label Content="Rented Books" HorizontalAlignment="Left" Margin="40,416,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+        <Calendar x:Name="Calendar" HorizontalAlignment="Left" Margin="702,90,0,0" VerticalAlignment="Top" Height="363" Width="290"/>
+        <TextBlock x:Name="RentInfoTextBlock" HorizontalAlignment="Left" Margin="702,495,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="77" Width="290" Background="#FFCBBFD1" FontWeight="Bold"></TextBlock>
+        <Label Content="Rent info" HorizontalAlignment="Left" Margin="702,456,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.109,-0.231" FontSize="14" FontWeight="Bold"/>
+        <Button x:Name="FindBtn" Content="Find" HorizontalAlignment="Left" Margin="433,50,0,0" VerticalAlignment="Top" Width="90" RenderTransformOrigin="0.455,-0.656" Click="FindBtn_Click" Height="34"/>
+        <Button x:Name="ReturnBtn" Content="Return" HorizontalAlignment="Left" Margin="570,647,0,0" VerticalAlignment="Top" Width="90" RenderTransformOrigin="0.455,-0.656" Click="ReturnBtn_Click" Height="34"/>
+        <Label Content="Category" HorizontalAlignment="Left" Margin="249,25,0,0" VerticalAlignment="Top" Height="27" FontWeight="Bold"/>
+
+    </Grid>
+</Window>

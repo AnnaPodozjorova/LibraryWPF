@@ -1,0 +1,58 @@
+﻿<Window x:Class="LibraryWPF.AdminBooks"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryWPF"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Background="#FF793183"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        Title="Admin Books" Height="541.66" Width="775.242" ResizeMode="NoResize" Closing="Window_Closing">
+    <Window.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Window.Resources>
+    <Grid>
+        <Rectangle Fill="White" HorizontalAlignment="Left" Height="478" Margin="10,10,0,0" Stroke="White" VerticalAlignment="Top" Width="747">
+            <Rectangle.Effect>
+                <DropShadowEffect ShadowDepth="1"
+                          Color="White"
+                          Opacity="5"
+                          BlurRadius="10"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Height="34" Margin="40,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <ComboBox x:Name="CriteriumCombobox" HorizontalAlignment="Left" Margin="248,103,0,0" VerticalAlignment="Top" Width="155" RenderTransformOrigin="0.454,0.019" Height="34" Background="White"/>
+        <Label Content="Find" HorizontalAlignment="Left" Margin="40,76,0,0" VerticalAlignment="Top" Height="27" FontWeight="Bold"/>
+        <DataGrid x:Name="BooksDataGrid" HorizontalAlignment="Left" Height="260" Margin="40,152,0,0" VerticalAlignment="Top" Width="699" ItemsSource="{Binding}" AutoGenerateColumns="False" SelectionChanged="BooksDataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding BookId}"/>
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Author" Binding="{Binding Author}"/>
+                <DataGridTextColumn Header="Shelf" Binding="{Binding Shelf}"/>
+                <DataGridTextColumn Header="Genre" Binding="{Binding Genre}"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
+                <DataGridTextColumn Header="Notes" Binding="{Binding Notes}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="AddBtn" Content="Add" HorizontalAlignment="Left" Margin="40,427,0,0" VerticalAlignment="Top" Width="90" RenderTransformOrigin="0.455,-0.656" Click="AddBtn_Click" Height="34"/>
+        <Button x:Name="ProfileBtn" Content="Profile"  HorizontalAlignment="Left" Margin="541,19,0,0" VerticalAlignment="Top" Width="90" RenderTransformOrigin="0.488,1.5" Click="ProfileBtn_Click" Height="34"/>
+        <Button x:Name="LogOutBtn" Content="Log out" HorizontalAlignment="Left" Margin="649,19,0,0" VerticalAlignment="Top" Click="LogOutBtn_Click" Width="90" Height="34"/>
+        <Button x:Name="DeleteBtn" Content="Delete" HorizontalAlignment="Left" Margin="135,427,0,0" VerticalAlignment="Top" Width="90" RenderTransformOrigin="0.455,-0.656" Click="DeleteBtn_Click" Height="34"/>
+        <Button x:Name="EditBtn"  Content="Edit" HorizontalAlignment="Left" Margin="230,427,0,0" VerticalAlignment="Top" Width="90" RenderTransformOrigin="0.455,-0.656" Click="EditBtn_Click" Height="34"/>
+        <Button x:Name="UserControlPanelBtn" Content="User Control Panel" HorizontalAlignment="Left" Margin="582,427,0,0" VerticalAlignment="Top" Width="157" RenderTransformOrigin="0.455,-0.656" Click="UserControlPanelBtn_Click" Height="34"/>
+        <Button x:Name="FindBtn" Content="Find" HorizontalAlignment="Left" Margin="421,103,0,0" VerticalAlignment="Top" Width="90" RenderTransformOrigin="0.488,1.5" Click="FindBtn_Click" Height="34"/>
+        <Label Content="Category" HorizontalAlignment="Left" Margin="250,76,0,0" VerticalAlignment="Top" Height="27" FontWeight="Bold"/>
+        <Label Content="Administrator control panel" HorizontalAlignment="Left" Margin="34,24,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+    </Grid>
+</Window>
